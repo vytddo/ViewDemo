@@ -3,9 +3,11 @@ package com.example.viewdemo;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.res.ResourcesCompat;
 
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -14,6 +16,7 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
+    boolean bigger = false;
     final String TAG = "GESTURE VIEW DEMO";
     ImageView imgViewSample; //cannot call findViewById until setContentView is called
 
@@ -52,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
         btnShowTextOrImage.setOnClickListener((View v) ->{
 
             if(btnShowTextOrImage.getText().toString()
-                    .equals(getResources().getString(R.string.txtShowText))){
+                    .equals(getString(R.string.txtShowText))){
                 txtViewSample.setVisibility(View.VISIBLE);
                 imgViewSample.setVisibility(View.INVISIBLE);
                 btnShowTextOrImage.setText(R.string.txtShowImage);
@@ -63,5 +66,77 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //new CustomTouchListener() calling the class that just created
+        txtViewSample.setOnTouchListener(new CustomTouchListener(MainActivity.this){
+            @Override
+            public void onSingleClick() {
+
+                super.onSingleClick();
+
+                if(txtViewSample.getCurrentTextColor() != getColor(R.color.purple_200)){
+                    txtViewSample.setTextColor(getColor(R.color.purple_200));
+                } else{
+                    //txtViewSample.setTextColor(Color.WHITE);
+                    txtViewSample.setTextColor(Color.rgb(255,255,255));
+                    //txtViewSample.setTextColor(Color.parseColor(#));
+                }
+            }
+
+            @Override
+            public void onDoubleClick() {
+                //if not bigger change it to bigger
+                if(!bigger){ //pixels - setTextSize
+                    txtViewSample.
+                            setTextSize(
+                                    txtViewSample.getTextSize()/
+                                            getResources().getDisplayMetrics().density + 10); // return sp
+                    bigger = true;
+                } else{
+                    txtViewSample.
+                            setTextSize(
+                                    txtViewSample.getTextSize()/
+                                            getResources().getDisplayMetrics().density - 10); // return sp
+                    bigger = false;
+                }
+
+                super.onDoubleClick();
+
+
+            }
+
+            @Override
+            public void onLongClick() {
+                super.onLongClick();
+            }
+
+            @Override
+            public void onUpSwipe() {
+                super.onUpSwipe();
+            }
+
+            @Override
+            public void onDownSwipe() {
+                super.onDownSwipe();
+            }
+
+            @Override
+            public void onLeftSwipe() {
+                super.onLeftSwipe();
+            }
+
+            @Override
+            public void onRightSwipe() {
+                super.onRightSwipe();
+            }
+        });
+
+        imgViewSample.setOnTouchListener(new CustomTouchListener(MainActivity.this){
+            @Override
+            public void onDoubleClick() {
+                //double click fuctionality for imgView
+                super.onDoubleClick();
+            }
+        });
     }
+
 }
