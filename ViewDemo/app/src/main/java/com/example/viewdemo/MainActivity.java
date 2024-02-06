@@ -107,6 +107,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onLongClick() {
                 super.onLongClick();
+                if(txtViewSample.getPaint().isStrikeThruText()){
+                    txtViewSample.setPaintFlags(txtViewSample.getPaintFlags() & ~paint.STRIKE_THRU_TEXT_FLAG);
+                }else{
+                    txtViewSample.setPaintFlags(txtViewSample.getPaintFlags() | ~paint.STRIKE_THRU_TEXT_FLAG);
+                }
             }
 
             @Override
@@ -144,8 +149,26 @@ public class MainActivity extends AppCompatActivity {
             public void onDoubleClick() {
                 //double click fuctionality for imgView
                 super.onDoubleClick();
+                if(imgViewSample.getScaleType() == ImageView.ScaleType.FIT_CENTER){
+                    imgViewSample.setScaleType(ImageView.ScaleType.FIT_XY);
+                }else{
+                    imgViewSample.setScaleType(ImageView.ScaleType.FIT_CENTER);
+                }
+            }
+            @Override
+            public void onSingleClick() {
+                //double click fuctionality for imgView
+                super.onSingleClick();
+                if (imgViewSample.getDrawable().getConstanstState() !=
+                      ResoucesCompat.getDrawable(getResouces(), R.drawable.bird,getTheme().getConstantState()   ) ) {
+                    imgViewSample.setImageResouce(R.drawable.bird);
+                }else{
+                    imgViewSample.setImageResource(R.drawable.fire);
+                    //imgViewSample.setImageResource(0); //no image setup
+                }
             }
         });
+
     }
 
 }
