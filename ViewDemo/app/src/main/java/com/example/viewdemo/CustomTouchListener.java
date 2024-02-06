@@ -100,16 +100,17 @@ public class CustomTouchListener implements View.OnTouchListener{
 
     }
 
-    public void onUpSwipe() {
+    public void onUpSwipe() { Log.d("GESTUREDEMO","Swipe Up dectected");
     }
 
     public void onDownSwipe() {
+        Log.d("GESTUREDEMO","Swipe Down dectected");
     }
 
-    public void onLeftSwipe() {
+    public void onLeftSwipe() { Log.d("GESTUREDEMO","Swipe Left dectected");
     }
 
-    public void onRightSwipe() {
+    public void onRightSwipe() { Log.d("GESTUREDEMO","Swipe Right dectected");
     }
 
     public void onLongClick() {
