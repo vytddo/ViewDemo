@@ -112,21 +112,30 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onUpSwipe() {
                 super.onUpSwipe();
+                int horzGravity = txtViewSample.getGravity() & Gravity.HORIZONTAL_GRAVITY_MASK;
+                txtViewSample.setGravity(verGravity | Gravity.TOP);
             }
 
             @Override
             public void onDownSwipe() {
                 super.onDownSwipe();
+                int horzGravity = txtViewSample.getGravity() & Gravity.HORIZONTAL_GRAVITY_MASK;
+                txtViewSample.setGravity(verGravity | Gravity.BOTTOM);
             }
 
             @Override
             public void onLeftSwipe() {
                 super.onLeftSwipe();
+                int verGravity = txtViewSample.getGravity() & Gravity.VERTICAL_GRAVITY_MASK;
+                txtViewSample.setGravity(verGravity | Gravity.LEFT);
             }
 
             @Override
             public void onRightSwipe() {
                 super.onRightSwipe();
+
+                int verGravity = txtViewSample.getGravity() & Gravity.VERTICAL_GRAVITY_MASK;
+                txtViewSample.setGravity(verGravity | Gravity.RIGHT);
             }
         });
 
